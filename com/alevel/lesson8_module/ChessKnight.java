@@ -57,15 +57,17 @@ public class ChessKnight {
     static int[][] generatePossibleMoves(int[] startPoint) {
         int[][] possible = new int[8][2];
 
-        // I think that possible to optimize code below but I don't have enough time for it
-        possible[0] = new int[]{(startPoint[0] - 2), (startPoint[1] + 1)};
-        possible[1] = new int[]{(startPoint[0] - 2), (startPoint[1] - 1)};
-        possible[2] = new int[]{(startPoint[0] - 1), (startPoint[1] + 2)};
-        possible[3] = new int[]{(startPoint[0] - 1), (startPoint[1] - 2)};
-        possible[4] = new int[]{(startPoint[0] + 1), (startPoint[1] + 2)};
-        possible[5] = new int[]{(startPoint[0] + 1), (startPoint[1] - 2)};
-        possible[6] = new int[]{(startPoint[0] + 2), (startPoint[1] + 1)};
-        possible[7] = new int[]{(startPoint[0] + 2), (startPoint[1] - 1)};
+        int k = -2;
+        for (int i = 0; i < 8; i += 2) {
+            int value = 3 - Math.abs(k);
+            possible[i] = new int[]{startPoint[0] + k, startPoint[1] + value};
+            possible[i + 1] = new int[]{startPoint[0] + k, startPoint[1] - value};
+            k++;
+            if (k == 0) {
+                k++;
+            }
+
+        }
 
         return possible;
     }
